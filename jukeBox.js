@@ -10,51 +10,91 @@ this.albumArt= albumArt;
 
 var viper = new Songs("viper.mp3");
 
-function JukeBox(songs){
+function JukeBox(song){
 
-this.songLists = [];
-this.songsLists.push(songs);
+this.songsList = [];
+this.songsList.push(songs);
 
 
 this.next = next;
 this.pause = pause;
 this.play = play;
-this.rewind = rewing;
+this.rewind = rewind;
+
+this.addSong = addSong;
 }
+
+var firstJukeBox = new JukeBox(viper);
 
 function next(){
 
 
-var indexNumber = this.songLists.indexOf(currentSong) + 1;
-this.songLists[indexNumber];
+var indexNumber = this.songsList.indexOf(currentSong) + 1;
+var songToPlay = this.songsList[indexNumber];
+
+JukeBox.play(songToPlay);
 
 }
 function pause(){
+	song.removeAttribute("src");
+}
+function play(songToPlay){
+	song.setAttribute("src", songToPlay);
 
 }
-function play(){
-	song.Playing.setAttribute("src", songToPlay);
-
-}
-function rewing(){
+function rewind(){
 
 
 }
 
+function addSongs(song){
 
-var songToPlay = viper.song;
+this.songLists.push(song);
 
+}
 
+var song = document.getElementById("song");
 
-
-
-
-
-document.addEventListener("click", function(){
-
+var currentSong = song.getAttribute("src");
 
 
 
 
+var buttons = document.getElementsByClassName("buttons");
+
+for(var i = 0; i < buttons.length; i++){
+
+var buttons[i] = document.addEventListener("click", function(){
+
+var operator = event.target.innerHTML;
+
+operation(operator);
 
 })
+
+}
+
+function operation(operator) {
+
+if(operator === "<<"){
+
+
+
+}else if(operator === ">"){
+
+
+
+
+}else if(opertor === "||"){
+
+
+
+}else if(operator === ">>"){
+
+
+
+}
+
+}
+
+
