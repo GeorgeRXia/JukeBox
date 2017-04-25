@@ -73,6 +73,55 @@ function operation(operator) {
 
 }
 
+
+
+var starboy = document.getElementById("starboy");
+var partyMonster = document.getElementById("partyMonster");
+var dianeYoung = document.getElementById("dianeyoung");
+
+starboy.addEventListener("click", function(){
+
+	firstJukeBox.currentSong = firstJukeBox.songsList[0].song;
+	firstJukeBox.currentSongNum = 0;
+	firstJukeBox.playSong();
+})
+
+partyMonster.addEventListener("click", function(){
+
+	firstJukeBox.currentSong = firstJukeBox.songsList[1].song;
+	firstJukeBox.currentSongNum = 1;
+	firstJukeBox.playSong();
+})
+
+dianeYoung.addEventListener("click", function(){
+
+	firstJukeBox.currentSong = firstJukeBox.songsList[2].song;
+	firstJukeBox.currentSongNum = 2;
+	firstJukeBox.playSong();
+})
+
+var random = document.getElementById("random");
+
+random.addEventListener("click", function(){
+	
+	var totalSongAmount = firstJukeBox.songsList.length - 1;
+	var random = Math.round(Math.random()*totalSongAmount);
+
+	firstJukeBox.currentSong = firstJukeBox.songsList[random].song;
+	firstJukeBox.currentSongNum = random;
+	firstJukeBox.playSong();
+
+})
+
+
+song.addEventListener("ended", function(){
+
+	firstJukeBox.nextSong();
+})
+
+
+
+
 function Songs (song, artist, songName, album, albumArt){
 	this.song = song;
 	this.artist = artist;
@@ -140,6 +189,7 @@ function JukeBox(songPick){
 		this.albumArtDisplay(songInfo);
 		song.play();
 
+	
 	}
 
 	function previousSong(){
@@ -187,11 +237,10 @@ function JukeBox(songPick){
 	}
 
 	function albumArtDisplay(i){
-		andrewWK.removeAttribute("class");
-
 		var albumArt = this.songsList[i].albumArt;
-		andrewWK.classList.add("andrewWK");
-		andrewWK.classList.add(albumArt);
+		albumArt = "andrewWK" + " " + albumArt;
+
+		andrewWK.setAttribute("class", albumArt);
 
 	}
 

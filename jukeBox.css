@@ -32,7 +32,7 @@ font-size: 20px;
 .andrewWK{
 	height: 300px;
 	width: 300px;
-	background-image: url("");
+	background-image: url("starboyAlbum.jpg");
 	background-size: 100% 100%;
 
 }
@@ -47,7 +47,18 @@ font-size: 20px;
 
 }
 
-.modal {
+.playList{
+	text-align: center;
+
+}
+
+#random{
+font-size: 100px;
+text-align: center;
+
+
+}
+/*.modal {
 	top: 0;
 	left: 0;
 	position: fixed;
@@ -71,5 +82,5 @@ background-image: url("");
 
 
 }
-
+*/
 
