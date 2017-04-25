@@ -1,99 +1,155 @@
-function Songs (song, artist, songName, album, albumArt){
-this.song = song;
-this.artist = artist;
-this.songName = songName; 
-this.album = album;
-this.albumArt= albumArt;
-
-
-}
-
-var viper = new Songs("viper.mp3");
-
-function JukeBox(song){
-
-this.songsList = [];
-this.songsList.push(songs);
-
-
-this.next = next;
-this.pause = pause;
-this.play = play;
-this.rewind = rewind;
-
-this.addSong = addSong;
-}
-
-var firstJukeBox = new JukeBox(viper);
-
-function next(){
-
-
-var indexNumber = this.songsList.indexOf(currentSong) + 1;
-var songToPlay = this.songsList[indexNumber];
-
-JukeBox.play(songToPlay);
-
-}
-function pause(){
-	song.removeAttribute("src");
-}
-function play(songToPlay){
-	song.setAttribute("src", songToPlay);
-
-}
-function rewind(){
-
-
-}
-
-function addSongs(song){
-
-this.songLists.push(song);
+function Songs (song, albumArt, artist, songName, album){
+	this.song = song;
+	this.artist = artist;
+	this.songName = songName; 
+	this.album = album;
+	this.albumArt= albumArt;
 
 }
 
 var song = document.getElementById("song");
 
-var currentSong = song.getAttribute("src");
+function JukeBox(song){
+
+	this.songsList = [];
+	this.songsList.push(song);
+
+	this.currentSong = this.songsList[0].song;
+	this.currentSongNum = 0;
+
+	this.nextSong = nextSong;
+	this.pauseSong = pauseSong;
+	this.playSong = playSong;
+	this.previousSong = previousSong;
+	
+	this.addSong = addSong;
+
+}
+
+function nextSong(){
+	
+	if(this.currentSongNum >= (this.songsList.length - 1)){
+		this.currentSongNum = 0;
+
+		var nextSongNum = this.currentSongNum;
+		var nextSong = this.songsList[nextSongNum].song;
+
+		this.currentSong = nextSong;
+
+		this.playSong();
+
+	}else{
+		
+		this.currentSongNum += 1 ;
+		var nextSongNum = this.currentSongNum;
+
+		var nextSong = this.songsList[nextSongNum].song;
+		
+		this.currentSong = nextSong;
+		this.playSong();
+	}
+}
+
+function pauseSong(){
+	song.pause();
+
+}
 
 
+function playSong(){
+	var songToPlay = this.currentSong;
+	
+	song.setAttribute("src", songToPlay);
+	
+	song.play();
+
+}
+
+function previousSong(){
+	
+	if(this.currentSongNum <= 0 ){
+
+		this.currentSongNum = (this.songsList.length - 1);
+		
+		var previousSongNum = this.currentSongNum;
+		this.currentSong = this.songsList[previousSongNum].song;
+		
+		this.playSong();
+		
+	} else {
+		
+	this.currentSongNum -= 1;
+	
+	var previousSongNum = this.currentSongNum;
+
+	var nextSong = this.songsList[previousSongNum].song;
+	
+	this.currentSong = nextSong;
+	this.playSong();
+
+	}
+
+}
+
+function addSong(song){
+	this.songsList.push(song);
+
+}
 
 
 var buttons = document.getElementsByClassName("buttons");
 
 for(var i = 0; i < buttons.length; i++){
+	buttons[i].addEventListener("click", function(){
 
-var buttons[i] = document.addEventListener("click", function(){
+	var operator = event.target.id;
 
-var operator = event.target.innerHTML;
+	operation(operator);
 
-operation(operator);
-
-})
+	});
 
 }
 
 function operation(operator) {
+	if(operator === "rewind"){
 
-if(operator === "<<"){
+	firstJukeBox.previousSong();
 
+	}
+	
+	if(operator === "play"){
+		firstJukeBox.playSong();
 
+	}
+	
+	if(operator === "pause"){
 
-}else if(operator === ">"){
+		firstJukeBox.pauseSong();
 
+	}
+	
+	if(operator === "next"){
+	 	
+		firstJukeBox.nextSong();
 
-
-
-}else if(opertor === "||"){
-
-
-
-}else if(operator === ">>"){
-
-
+	}
 
 }
+
+var starboy = new Songs("Starboy.mp3", "starboyAlbum.jpg");
+var partyMonster = new Songs("Partymonster.mp3", "starboyAlbum.jpg");
+var dianeYoung = new Songs("Dianeyoung.mp3");
+
+var firstJukeBox = new JukeBox(starboy);
+firstJukeBox.addSong(partyMonster);
+firstJukeBox.addSong(dianeYoung);
+
+
+function albumModalArt (event){
+
+var albumPicture = event.target.id;
+
+
 
 }
 

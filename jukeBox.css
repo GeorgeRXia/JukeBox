@@ -1,5 +1,51 @@
-.pause, .next, .rewind, .play{
-display: inline;
+body {
+	background-color: gold;
+
+}
+
+h1 {
+	text-align: center;
+
+}
+
+.player-container {
+	display: flex;
+	justify-content: space-between;
+
+}
+
+
+.buttons {
+	font-size: 150px;
+	text-align: center;
+	margin: 0 auto;
+	display: inline;
+	background-color: silver;
+}
+
+.modal {
+	top: 0;
+	left: 0;
+	position: fixed;
+	display: none;
+	width: 100%;
+
+}
+
+.innerModal{
+margin: 75px auto;
+width: 40%;
+height: 300px;
+background-color: white;
+
+}
+
+.modalContent{
+
+background-image: url("");
+
 
 
 }
+
+

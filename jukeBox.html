@@ -2,28 +2,37 @@
 <html>
 <head>
 	<title></title>
+	<link rel="stylesheet" type="text/css" href="jukeBox.css">
 </head>
 <body>
 
+<h1>MAKE MUSIC</h1>
 
-
-<div class="player-container">
-
-
-  <source src="viper.mp3" type="audio/mp3" id = "song">
-  <source src="viper.ogg" type="audio/ogg" id = "song1">
-
+<main>
+	<div class="player-container">
+		<audio src="" type="audio/mp3" id = "song"></audio>
+  		
+  		<button type= "button"  id='rewind' class="buttons rewind"> << </button>
 	
-	<div class="buttons rewind"> << </div>
-	<div class="buttons play"> > </div>
-	<div class="buttons pause"> || </div>
-	<div class="buttons next"> >> </div>
+		<button type= "button" id='play' class="buttons play"> > </button>
+
+		<button type= "button" id= 'pause' class="buttons pause"> || </button>
+
+		<button type= "button" id='next' class="buttons next"> >> </button>
+	</div>
+</main>
+
+
+<div class="modal">
+	<div class="innerModal">
+		<div class="modalContent">
+			
+		</div>
+	</div>
+
+
 </div>
-
-	
-
-
-</div>
+<script type="text/javascript" src= "jukeBox.js"></script>
 
 </body>
 </html>
