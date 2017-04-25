@@ -11,16 +11,40 @@ h1 {
 .player-container {
 	display: flex;
 	justify-content: space-between;
+	flex-wrap: wrap;
 
 }
 
+.display{
 
+font-size: 20px;
+
+
+}
 .buttons {
 	font-size: 150px;
 	text-align: center;
 	margin: 0 auto;
 	display: inline;
 	background-color: silver;
+}
+
+.andrewWK{
+	height: 300px;
+	width: 300px;
+	background-image: url("");
+	background-size: 100% 100%;
+
+}
+
+.starboy {
+ 	background-image: url("starboyAlbum.jpg");
+
+}
+
+.modernVampire{
+	background-image: url("ModernVampireOfTheCityAlbum.jpg");
+
 }
 
 .modal {
