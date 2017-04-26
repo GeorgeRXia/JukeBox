@@ -17,7 +17,7 @@ window.addEventListener("load", function(){
 	firstJukeBox.songNameDisplay(songIndex);
 	firstJukeBox.artistNameDisplay(songIndex);
 
-	})
+})
 
 document.addEventListener("keyup", function(){
 	if (event.keyCode = 27){
