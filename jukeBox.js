@@ -1,8 +1,43 @@
+// var sCloudSong, sCloudProfile, sCloudArtist, sCloudTitle, sCloudDescription, sCloudGenre, sCloudReleaseYear, sCloudAlbumArt;
+
+SC.initialize({
+	client_id: 'f665fc458615b821cdf1a26b6d1657f6'
+
+})
+
+// SC.get("/tracks", {
+// q: "kwest"
+
+
+// }).then(function(response){
+
+//  sCloudSong = response[0].id;
+//  sCloudProfile = response[0].permalink_url;
+//  sCloudArtist = response[0].tag_list;
+//  sCloudTitle = response[0].title;
+//  sCloudDescription = response[0].description;
+//  sCloudGenre = response[0].genre;
+//  sCloudReleaseYear = response[0].release_year;
+//  sCloudAlbumArt = response[0].artwork_url;
+
+// console.log(response);
+
+
+// })
+
+
+var sCloudAlbumArt;
+var sCloudProfile = "https://soundcloud.com/jon-kwest/major-lazer-jessica-feat-ezra";
+var sCloudDescription = "90 BPM Lover's Rock type refix slow grind biz";
+
+var kWest = new SongsFromSoundCloud(99938838, "Kwest", "Major Lazer - Jessica feat. Ezra Koenig (Jon Kwest Slowed Town Mix)", sCloudProfile, "kWest", "90bpm", sCloudDescription, "null");
+
+
 var song = document.getElementById("song");
 var songName = document.getElementsByClassName("songName")[0];
 var artistName = document.getElementsByClassName("artistName")[0];
 
-
+//function Songs (song, artist, songName, album, albumArt, profilePage, genre, description, releaseYear)
 var starboy = new Songs("Starboy.mp3", "The Weeknd", "Starboy", "Starboy", "starboy");
 var partyMonster = new Songs("Partymonster.mp3", "The Weeknd", "Party Monster", "Starboy", "starboy");
 var dianeYoung = new Songs("Dianeyoung.mp3", "Vampire Weekend", "Diane Young", "Modern Vampires of the City", "modernVampire");
@@ -10,6 +45,7 @@ var dianeYoung = new Songs("Dianeyoung.mp3", "Vampire Weekend", "Diane Young", "
 var firstJukeBox = new JukeBox(starboy);
 firstJukeBox.addSong(partyMonster);
 firstJukeBox.addSong(dianeYoung);
+firstJukeBox.addSong(kWest);
 
 window.addEventListener("load", function(){
 	var songIndex = firstJukeBox.currentSongNum;
@@ -34,6 +70,10 @@ andrewWK.addEventListener("click", function(){
 
 })
 
+
+
+
+
 var buttons = document.getElementsByClassName("buttons");
 
 for(var i = 0; i < buttons.length; i++){
@@ -47,28 +87,67 @@ for(var i = 0; i < buttons.length; i++){
 
 }
 
+		var sCloudSongNum = 3;
+				console.log(sCloudSongNum);
+				var sCloudSongId = firstJukeBox.songsList[sCloudSongNum].song;
+	
+				var sCloudSongPlay = "/tracks/" + sCloudSongId;
+
+				SC.stream(sCloudSongPlay).then(function(player){
+
+				// player.play();
+				firstJukeBox.player = player;
+
+				})
+
+
 function operation(operator) {
 	if(operator === "rewind"){
+		firstJukeBox.previousSong();
+		firstJukeBox.player.pause();
+		if(firstJukeBox.soundCloudSong === true){
+			
+			firstJukeBox.player.play();
+		} else{
+			
+			firstJukeBox.playSong();
 
-	firstJukeBox.previousSong();
+
+		}
+	
 
 	}
 	
 	if(operator === "play"){
-		firstJukeBox.playSong();
+		if(firstJukeBox.soundCloudSong === true){
+			firstJukeBox.nextSong();
+			firstJukeBox.player.play();
 
+		} else{
+
+			 firstJukeBox.playSong();
+		}
 	}
 	
 	if(operator === "pause"){
-
-		firstJukeBox.pauseSong();
-
+		if(firstJukeBox.soundCloudSong === true){
+			
+			firstJukeBox.player.pause();
+		}else{
+			firstJukeBox.pauseSong();
+		}
 	}
 	
 	if(operator === "next"){
-	 	
 		firstJukeBox.nextSong();
-
+		firstJukeBox.player.pause();
+		if(firstJukeBox.soundCloudSong === true){	
+			
+			firstJukeBox.player.play();
+		}else{
+			
+			firstJukeBox.playSong();
+		}
 	}
 
 }
@@ -122,12 +201,24 @@ song.addEventListener("ended", function(){
 
 
 
-function Songs (song, artist, songName, album, albumArt){
+function Songs (song, artist, songName, album, albumArt, profilePage, genre, description, releaseYear){
+	
 	this.song = song;
 	this.artist = artist;
 	this.songName = songName; 
 	this.album = album;
 	this.albumArt= albumArt;
+	this.profilePage = profilePage;
+	this.genre = genre;
+	this.description = description;
+	this.releaseYear = releaseYear;
+
+}
+
+function SongsFromSoundCloud(){
+	this.soundCloud = true;
+	Songs.apply(this, arguments);
+
 
 }
 
@@ -137,6 +228,7 @@ function JukeBox(songPick){
 	this.songsList = [];
 	this.songsList.push(songPick);
 
+	this.soundCloudSong = this.songsList[0].soundCloud;
 	this.currentSong = this.songsList[0].song;
 	this.currentSongNum = 0;
 
@@ -150,6 +242,15 @@ function JukeBox(songPick){
 	
 	this.addSong = addSong;
 
+	// this.soundCloudPlayed = soundCloudPlayed;
+	
+	// this.sCloudPlayer = sCloudPlayer;
+	// this.player;
+	// this.sCloudPlay = sCloudPlay;
+	// this.sCloudPause = sCloudPause;
+
+}
+
 	function nextSong(){
 		
 		if(this.currentSongNum >= (this.songsList.length - 1)){
@@ -160,7 +261,12 @@ function JukeBox(songPick){
 
 			this.currentSong = nextSong;
 
-			this.playSong();
+			this.soundCloudSong = this.songsList[nextSongNum].soundCloud;
+		this.songNameDisplay(nextSongNum);
+		this.artistNameDisplay(nextSongNum);
+		this.albumArtDisplay(nextSongNum);
+			// this.playSong();
+			this.pauseSong();
 
 		}else{
 			
@@ -168,9 +274,13 @@ function JukeBox(songPick){
 			var nextSongNum = this.currentSongNum;
 
 			var nextSong = this.songsList[nextSongNum].song;
-			
+			this.soundCloudSong = this.songsList[nextSongNum].soundCloud;
 			this.currentSong = nextSong;
-			this.playSong();
+			// this.playSong();
+		this.songNameDisplay(nextSongNum);
+		this.artistNameDisplay(nextSongNum);
+		this.albumArtDisplay(nextSongNum);
+			this.pauseSong();
 		}
 	}
 	
@@ -184,9 +294,9 @@ function JukeBox(songPick){
 		var songInfo = this.currentSongNum;
 		song.setAttribute("src", songToPlay);
 	
-		this.songNameDisplay(songInfo);
-		this.artistNameDisplay(songInfo);
-		this.albumArtDisplay(songInfo);
+		// this.songNameDisplay(songInfo);
+		// this.artistNameDisplay(songInfo);
+		// this.albumArtDisplay(songInfo);
 		song.play();
 
 	
@@ -199,9 +309,13 @@ function JukeBox(songPick){
 			
 			var previousSongNum = this.currentSongNum;
 			this.currentSong = this.songsList[previousSongNum].song;
-			
-			this.playSong();
-			
+			this.soundCloudSong = this.songsList[previousSongNum].soundCloud;
+			// this.playSong();
+
+		this.songNameDisplay(previousSongNum);
+		this.artistNameDisplay(previousSongNum);
+		this.albumArtDisplay(previousSongNum);
+			this.pauseSong();
 		} else {
 			
 			this.currentSongNum -= 1;
@@ -209,10 +323,13 @@ function JukeBox(songPick){
 			var previousSongNum = this.currentSongNum;
 
 			var nextSong = this.songsList[previousSongNum].song;
-			
+			this.soundCloudSong = this.songsList[previousSongNum].soundCloud;
 			this.currentSong = nextSong;
-			this.playSong();
-
+			// this.playSong();
+		this.songNameDisplay(previousSongNum);
+		this.artistNameDisplay(previousSongNum);
+		this.albumArtDisplay(previousSongNum);
+			this.pauseSong();
 		}
 
 	}
@@ -244,7 +361,44 @@ function JukeBox(songPick){
 
 	}
 
-}
+// function soundCloudPlayed(){
+
+// this.currentSongNum += 1;
+
+
+// }
+
+
+
+// function sCloudPlayer(){
+
+
+// }
+
+
+// function sCloudPlay(){
+// SC.stream("/tracks/117724592").then(function(player){
+
+// firstJukeBox.sCloudPlay1 = player;
+
+
+// })
+
+// }
+
+
+// function sCloudPause(){
+// SC.stream("/tracks/117724592").then(function(player){
+
+// player.pause();
+
+
+// })
+
+// }
+
+
+
 
 
 
