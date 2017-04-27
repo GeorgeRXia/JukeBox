@@ -42,23 +42,23 @@ var songName = document.getElementsByClassName("songName")[0];
 var artistName = document.getElementsByClassName("artistName")[0];
 
 //function Songs (song, artist, songName, album, albumArt, profilePage, genre, description, releaseYear)
-var starboy = new Songs("Starboy.mp3", "The Weeknd", "Starboy", "Starboy", "starboy");
-var partyMonster = new Songs("Partymonster.mp3", "The Weeknd", "Party Monster", "Starboy", "starboy");
-var dianeYoung = new Songs("Dianeyoung.mp3", "Vampire Weekend", "Diane Young", "Modern Vampires of the City", "modernVampire");
+// var starboy = new Songs("Starboy.mp3", "The Weeknd", "Starboy", "Starboy", "starboy");
+// var partyMonster = new Songs("Partymonster.mp3", "The Weeknd", "Party Monster", "Starboy", "starboy");
+// var dianeYoung = new Songs("Dianeyoung.mp3", "Vampire Weekend", "Diane Young", "Modern Vampires of the City", "modernVampire");
 
-var firstJukeBox = new JukeBox(starboy);
-firstJukeBox.addSong(partyMonster);
-firstJukeBox.addSong(dianeYoung);
+var firstJukeBox = new JukeBox();
+// firstJukeBox.addSong(partyMonster);
+// firstJukeBox.addSong(dianeYoung);
 firstJukeBox.addSong(kWest);
 // firstJukeBox.addSong(kWest2);
 
-window.addEventListener("load", function(){
-	var songIndex = firstJukeBox.currentSongNum;
+// window.addEventListener("load", function(){
+// 	var songIndex = firstJukeBox.currentSongNum;
 
-	firstJukeBox.songNameDisplay(songIndex);
-	firstJukeBox.artistNameDisplay(songIndex);
+// 	firstJukeBox.songNameDisplay(songIndex);
+// 	firstJukeBox.artistNameDisplay(songIndex);
 
-})
+// })
 
 document.addEventListener("keyup", function(){
 	if (event.keyCode = 27){
@@ -86,7 +86,7 @@ for(var i = 0; i < buttons.length; i++){
 
 	var operator = event.target.id;
 
-	operation(operator);
+	firstJukeBox.soundCloudRunner(operator);
 
 	});
 
@@ -171,10 +171,10 @@ function SongsFromSoundCloud(){
 function JukeBox(songPick){
 
 	this.songsList = [];
-	this.songsList.push(songPick);
+	// this.songsList.push(songPick);
 
-	this.soundCloudSong = this.songsList[0].soundCloud;
-	this.currentSong = this.songsList[0].song;
+	// this.soundCloudSong = this.songsList[0].soundCloud;
+	// this.currentSong = this.songsList[0].song;
 	this.currentSongNum = 0;
 
 	this.nextSong = nextSong;
@@ -198,10 +198,7 @@ function JukeBox(songPick){
 	// this.player;
 	// this.sCloudPlay = sCloudPlay;
 	// this.sCloudPause = sCloudPause;
-
-}
-
-	function nextSong(){
+function nextSong(){
 		
 		if(this.currentSongNum >= (this.songsList.length - 1)){
 			this.currentSongNum = 0;
@@ -316,7 +313,7 @@ function JukeBox(songPick){
 	}
 
 function operation(operator) {
-	this.soundCloudRunner();
+	
 	if(operator === "rewind"){
 		this.previousSong();
 		juke.player.pause();
@@ -368,7 +365,7 @@ function operation(operator) {
 
 }
 
-function soundCloudRunner(){
+function soundCloudRunner(operator){
 		var sCloudSongNum = this.currentSongNum;
 				
 				var sCloudSongId = firstJukeBox.songsList[sCloudSongNum].song;
@@ -379,10 +376,13 @@ function soundCloudRunner(){
 
 				// player.play();
 				juke.player = player;
-
+juke.operation(operator);
 				})
 
 };
+}
+
+
 
 
 
