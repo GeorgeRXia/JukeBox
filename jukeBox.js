@@ -27,10 +27,11 @@ SC.initialize({
 
 
 var sCloudAlbumArt;
-var sCloudProfile = "https://soundcloud.com/jon-kwest/major-lazer-jessica-feat-ezra";
+var sCloudProfile = "https://soundcloud.com/brooklynhippy";
+var sCloudSongPage = "https://soundcloud.com/jon-kwest/major-lazer-jessica-feat-ezra";
 var sCloudDescription = "90 BPM Lover's Rock type refix slow grind biz";
-
-var kWest = new SongsFromSoundCloud(99938838, "Kwest", "Major Lazer - Jessica feat. Ezra Koenig (Jon Kwest Slowed Town Mix)", sCloudProfile, "kWest", "90bpm", sCloudDescription, "null");
+// function Songs (song, artist, songName, album, albumArt, profilePage, genre, description, releaseYear)
+var kWest = new SongsFromSoundCloud(99938838, "Kwest", "Major Lazer - Jessica feat. Ezra Koenig (Jon Kwest Slowed Town Mix)", "KWest Mix", "kWest", sCloudProfile, sCloudSongPage, "90bpm", sCloudDescription, "null");
 
 
 var song = document.getElementById("song");
@@ -201,7 +202,7 @@ song.addEventListener("ended", function(){
 
 
 
-function Songs (song, artist, songName, album, albumArt, profilePage, genre, description, releaseYear){
+function Songs (song, artist, songName, album, albumArt, profilePage, songPage, genre, description, releaseYear){
 	
 	this.song = song;
 	this.artist = artist;
@@ -209,6 +210,7 @@ function Songs (song, artist, songName, album, albumArt, profilePage, genre, des
 	this.album = album;
 	this.albumArt= albumArt;
 	this.profilePage = profilePage;
+	this.songPage = songPage;
 	this.genre = genre;
 	this.description = description;
 	this.releaseYear = releaseYear;
@@ -348,9 +350,13 @@ function JukeBox(songPick){
 
 	function artistNameDisplay(i){
 		var msg = "";
-		msg = this.songsList[i].artist;
-
-		artistName.innerHTML = "Artist: " + msg;
+		msg = "Artist: " + this.songsList[i].artist + "</br>";
+		msg += "Profile: " + this.songsList[i].profilePage + "</br>";
+		msg += "Song Page: " + this.songsList[i].songPage + "</br>";
+		msg += "Description: " + this.songsList[i].description + "</br>";
+		msg += "Genre: " + this.songsList[i].genre + "</br>";
+		msg += "Release Date: " + this.songsList[i].releaseYear;
+ 		artistName.innerHTML = msg; 
 	}
 
 	function albumArtDisplay(i){
