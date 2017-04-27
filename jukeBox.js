@@ -92,116 +92,55 @@ for(var i = 0; i < buttons.length; i++){
 
 }
 
-		var sCloudSongNum = 3;
-				console.log(sCloudSongNum);
-				var sCloudSongId = firstJukeBox.songsList[sCloudSongNum].song;
+
+
+
+
+
+
+// var starboy = document.getElementById("starboy");
+// var partyMonster = document.getElementById("partyMonster");
+// var dianeYoung = document.getElementById("dianeyoung");
+
+// starboy.addEventListener("click", function(){
+
+// 	firstJukeBox.currentSong = firstJukeBox.songsList[0].song;
+// 	firstJukeBox.currentSongNum = 0;
+// 	firstJukeBox.playSong();
+// })
+
+// partyMonster.addEventListener("click", function(){
+
+// 	firstJukeBox.currentSong = firstJukeBox.songsList[1].song;
+// 	firstJukeBox.currentSongNum = 1;
+// 	firstJukeBox.playSong();
+// })
+
+// dianeYoung.addEventListener("click", function(){
+
+// 	firstJukeBox.currentSong = firstJukeBox.songsList[2].song;
+// 	firstJukeBox.currentSongNum = 2;
+// 	firstJukeBox.playSong();
+// })
+
+// var random = document.getElementById("random");
+
+// random.addEventListener("click", function(){
 	
-				var sCloudSongPlay = "/tracks/" + sCloudSongId;
+// 	var totalSongAmount = firstJukeBox.songsList.length - 1;
+// 	var random = Math.round(Math.random()*totalSongAmount);
 
-				SC.stream(sCloudSongPlay).then(function(player){
+// 	firstJukeBox.currentSong = firstJukeBox.songsList[random].song;
+// 	firstJukeBox.currentSongNum = random;
+// 	firstJukeBox.playSong();
 
-				// player.play();
-				firstJukeBox.player = player;
-
-				})
-
-
-function operation(operator) {
-	if(operator === "rewind"){
-		firstJukeBox.previousSong();
-		firstJukeBox.player.pause();
-		if(firstJukeBox.soundCloudSong === true){
-			
-			firstJukeBox.player.play();
-		} else{
-			
-			firstJukeBox.playSong();
+// })
 
 
-		}
-	
+// song.addEventListener("ended", function(){
 
-	}
-	
-	if(operator === "play"){
-		if(firstJukeBox.soundCloudSong === true){
-			firstJukeBox.nextSong();
-			firstJukeBox.player.play();
-
-		} else{
-
-			 firstJukeBox.playSong();
-		}
-	}
-	
-	if(operator === "pause"){
-		if(firstJukeBox.soundCloudSong === true){
-			
-			firstJukeBox.player.pause();
-		}else{
-			firstJukeBox.pauseSong();
-		}
-	}
-	
-	if(operator === "next"){
-		firstJukeBox.nextSong();
-		firstJukeBox.player.pause();
-		if(firstJukeBox.soundCloudSong === true){	
-			
-			firstJukeBox.player.play();
-		}else{
-			
-			firstJukeBox.playSong();
-		}
-	}
-
-}
-
-
-
-var starboy = document.getElementById("starboy");
-var partyMonster = document.getElementById("partyMonster");
-var dianeYoung = document.getElementById("dianeyoung");
-
-starboy.addEventListener("click", function(){
-
-	firstJukeBox.currentSong = firstJukeBox.songsList[0].song;
-	firstJukeBox.currentSongNum = 0;
-	firstJukeBox.playSong();
-})
-
-partyMonster.addEventListener("click", function(){
-
-	firstJukeBox.currentSong = firstJukeBox.songsList[1].song;
-	firstJukeBox.currentSongNum = 1;
-	firstJukeBox.playSong();
-})
-
-dianeYoung.addEventListener("click", function(){
-
-	firstJukeBox.currentSong = firstJukeBox.songsList[2].song;
-	firstJukeBox.currentSongNum = 2;
-	firstJukeBox.playSong();
-})
-
-var random = document.getElementById("random");
-
-random.addEventListener("click", function(){
-	
-	var totalSongAmount = firstJukeBox.songsList.length - 1;
-	var random = Math.round(Math.random()*totalSongAmount);
-
-	firstJukeBox.currentSong = firstJukeBox.songsList[random].song;
-	firstJukeBox.currentSongNum = random;
-	firstJukeBox.playSong();
-
-})
-
-
-song.addEventListener("ended", function(){
-
-	firstJukeBox.nextSong();
-})
+// 	firstJukeBox.nextSong();
+// })
 
 
 
@@ -247,6 +186,9 @@ function JukeBox(songPick){
 	this.albumArtDisplay = albumArtDisplay;
 	
 	this.addSong = addSong;
+	this.operation = operation;
+
+	this.soundCloudRunner = soundCloudRunner;
 
 	// this.soundCloudPlayed = soundCloudPlayed;
 	
@@ -371,46 +313,72 @@ function JukeBox(songPick){
 
 	}
 
-// function soundCloudPlayed(){
-
-// this.currentSongNum += 1;
-
-
-// }
-
-
-
-// function sCloudPlayer(){
-
-
-// }
+function operation(operator) {
+	if(operator === "rewind"){
+		this.previousSong();
+		juke.player.pause();
+		if(this.soundCloudSong === true){
+			
+			juke.player.play();
+		} else{
+			
+			this.playSong();
 
 
-// function sCloudPlay(){
-// SC.stream("/tracks/117724592").then(function(player){
+		}
+	
 
-// firstJukeBox.sCloudPlay1 = player;
+	}
+	
+	if(operator === "play"){
+		if(this.soundCloudSong === true){
+			this.nextSong();
+			juke.player.play();
 
+		} else{
 
-// })
+			 firstJukeBox.playSong();
+		}
+	}
+	
+	if(operator === "pause"){
+		if(this.soundCloudSong === true){
+			
+			juke.player.pause();
+		}else{
+			this.pauseSong();
+		}
+	}
+	
+	if(operator === "next"){
+		this.nextSong();
+		juke.player.pause();
+		if(this.soundCloudSong === true){	
+			
+			juke.player.play();
+		}else{
+			
+			this.playSong();
+		}
+	}
 
-// }
+}
 
+function soundCloudRunner(){
+		var sCloudSongNum = this.currentSongNum;
+				
+				var sCloudSongId = firstJukeBox.songsList[sCloudSongNum].song;
+	
+				var sCloudSongPlay = "/tracks/" + sCloudSongId;
 
-// function sCloudPause(){
-// SC.stream("/tracks/117724592").then(function(player){
+				SC.stream(sCloudSongPlay).then(function(player){
 
-// player.pause();
+				// player.play();
+				juke.player = player;
 
+				})
 
-// })
-
-// }
-
-
-
-
-
+};
 
 
 
