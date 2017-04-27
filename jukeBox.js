@@ -33,6 +33,9 @@ var sCloudDescription = "90 BPM Lover's Rock type refix slow grind biz";
 // function Songs (song, artist, songName, album, albumArt, profilePage, genre, description, releaseYear)
 var kWest = new SongsFromSoundCloud(99938838, "Kwest", "Major Lazer - Jessica feat. Ezra Koenig (Jon Kwest Slowed Town Mix)", "KWest Mix", "kWest", sCloudProfile, sCloudSongPage, "90bpm", sCloudDescription, "null");
 
+var sCloudKwestSongName = "Nasty Na - They Dont Love You Nomore (freestyle) Ft K.West";
+
+var kWest2 = new SongsFromSoundCloud(149078143, "Kwest",sCloudKwestSongName, "KWest Mix", "KWest2", sCloudProfile,  "https://soundcloud.com/nastyna215/nasty-na-they-dont-love-you-nomore-freestyle-ft-kwest", "Nasty Na", "Nasty Na New track", "null");
 
 var song = document.getElementById("song");
 var songName = document.getElementsByClassName("songName")[0];
@@ -47,29 +50,30 @@ var firstJukeBox = new JukeBox(starboy);
 firstJukeBox.addSong(partyMonster);
 firstJukeBox.addSong(dianeYoung);
 firstJukeBox.addSong(kWest);
+firstJukeBox.addSong(kWest2);
 
-window.addEventListener("load", function(){
-	var songIndex = firstJukeBox.currentSongNum;
+// window.addEventListener("load", function(){
+// 	var songIndex = firstJukeBox.currentSongNum;
 
-	firstJukeBox.songNameDisplay(songIndex);
-	firstJukeBox.artistNameDisplay(songIndex);
+// 	firstJukeBox.songNameDisplay(songIndex);
+// 	firstJukeBox.artistNameDisplay(songIndex);
 
-})
+// })
 
-document.addEventListener("keyup", function(){
-	if (event.keyCode = 27){
+// document.addEventListener("keyup", function(){
+// 	if (event.keyCode = 27){
 
-		firstJukeBox.pauseSong();
-	}
+// 		firstJukeBox.pauseSong();
+// 	}
 
-})
+// })
 
-var andrewWK = document.getElementsByClassName("andrewWK")[0];
+// var andrewWK = document.getElementsByClassName("andrewWK")[0];
 
-andrewWK.addEventListener("click", function(){
-	firstJukeBox.playSong();
+// andrewWK.addEventListener("click", function(){
+// 	firstJukeBox.playSong();
 
-})
+// })
 
 
 
