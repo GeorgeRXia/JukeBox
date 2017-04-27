@@ -30,8 +30,12 @@ var sCloudAlbumArt;
 var sCloudProfile = "https://soundcloud.com/brooklynhippy";
 var sCloudSongPage = "https://soundcloud.com/jon-kwest/major-lazer-jessica-feat-ezra";
 var sCloudDescription = "90 BPM Lover's Rock type refix slow grind biz";
-// function Songs (song, artist, songName, album, albumArt, profilePage, genre, description, releaseYear)
+// function Songs (song, artist, songName, album, albumArt, profilePage, songPage, genre, description, releaseYear)
 var kWest = new SongsFromSoundCloud(99938838, "Kwest", "Major Lazer - Jessica feat. Ezra Koenig (Jon Kwest Slowed Town Mix)", "KWest Mix", "kWest", sCloudProfile, sCloudSongPage, "90bpm", sCloudDescription, "null");
+
+var sCloudKwestSongName = "Nasty Na - They Dont Love You Nomore (freestyle) Ft K.West";
+
+var kWest2 = new SongsFromSoundCloud(149078143, "Kwest",sCloudKwestSongName, "KWest Mix", "KWest2", sCloudProfile,  "https://soundcloud.com/nastyna215/nasty-na-they-dont-love-you-nomore-freestyle-ft-kwest", "Nasty Na", "Nasty Na New track", "null");
 
 
 var song = document.getElementById("song");
@@ -47,6 +51,7 @@ var firstJukeBox = new JukeBox(starboy);
 firstJukeBox.addSong(partyMonster);
 firstJukeBox.addSong(dianeYoung);
 firstJukeBox.addSong(kWest);
+firstJukeBox.addSong(kWest2);
 
 window.addEventListener("load", function(){
 	var songIndex = firstJukeBox.currentSongNum;
@@ -155,49 +160,49 @@ function operation(operator) {
 
 
 
-var starboy = document.getElementById("starboy");
-var partyMonster = document.getElementById("partyMonster");
-var dianeYoung = document.getElementById("dianeyoung");
+// var starboy = document.getElementById("starboy");
+// var partyMonster = document.getElementById("partyMonster");
+// var dianeYoung = document.getElementById("dianeyoung");
 
-starboy.addEventListener("click", function(){
+// starboy.addEventListener("click", function(){
 
-	firstJukeBox.currentSong = firstJukeBox.songsList[0].song;
-	firstJukeBox.currentSongNum = 0;
-	firstJukeBox.playSong();
-})
+// 	firstJukeBox.currentSong = firstJukeBox.songsList[0].song;
+// 	firstJukeBox.currentSongNum = 0;
+// 	firstJukeBox.playSong();
+// })
 
-partyMonster.addEventListener("click", function(){
+// partyMonster.addEventListener("click", function(){
 
-	firstJukeBox.currentSong = firstJukeBox.songsList[1].song;
-	firstJukeBox.currentSongNum = 1;
-	firstJukeBox.playSong();
-})
+// 	firstJukeBox.currentSong = firstJukeBox.songsList[1].song;
+// 	firstJukeBox.currentSongNum = 1;
+// 	firstJukeBox.playSong();
+// })
 
-dianeYoung.addEventListener("click", function(){
+// dianeYoung.addEventListener("click", function(){
 
-	firstJukeBox.currentSong = firstJukeBox.songsList[2].song;
-	firstJukeBox.currentSongNum = 2;
-	firstJukeBox.playSong();
-})
+// 	firstJukeBox.currentSong = firstJukeBox.songsList[2].song;
+// 	firstJukeBox.currentSongNum = 2;
+// 	firstJukeBox.playSong();
+// })
 
-var random = document.getElementById("random");
+// var random = document.getElementById("random");
 
-random.addEventListener("click", function(){
+// random.addEventListener("click", function(){
 	
-	var totalSongAmount = firstJukeBox.songsList.length - 1;
-	var random = Math.round(Math.random()*totalSongAmount);
+// 	var totalSongAmount = firstJukeBox.songsList.length - 1;
+// 	var random = Math.round(Math.random()*totalSongAmount);
 
-	firstJukeBox.currentSong = firstJukeBox.songsList[random].song;
-	firstJukeBox.currentSongNum = random;
-	firstJukeBox.playSong();
+// 	firstJukeBox.currentSong = firstJukeBox.songsList[random].song;
+// 	firstJukeBox.currentSongNum = random;
+// 	firstJukeBox.playSong();
 
-})
+// })
 
 
-song.addEventListener("ended", function(){
+// song.addEventListener("ended", function(){
 
-	firstJukeBox.nextSong();
-})
+// 	firstJukeBox.nextSong();
+// })
 
 
 
@@ -246,8 +251,8 @@ function JukeBox(songPick){
 
 	// this.soundCloudPlayed = soundCloudPlayed;
 	
-	// this.sCloudPlayer = sCloudPlayer;
-	// this.player;
+	this.sCloudPlayerStart = sCloudPlayerStart;
+	
 	// this.sCloudPlay = sCloudPlay;
 	// this.sCloudPause = sCloudPause;
 
@@ -376,10 +381,23 @@ function JukeBox(songPick){
 
 
 
-// function sCloudPlayer(){
+function sCloudPlayerStart(){
+	var sCloudSongNum = 3;
+	// this.currentSongNum;
+				console.log(sCloudSongNum);
+				var sCloudSongId = firstJukeBox.songsList[sCloudSongNum].song;
+	
+				var sCloudSongPlay = "/tracks/" + sCloudSongId;
 
+				SC.stream(sCloudSongPlay).then(function(player){
 
-// }
+				// player.play();
+				this.sCloudplayer = player;
+
+				})
+
+}
+
 
 
 // function sCloudPlay(){
