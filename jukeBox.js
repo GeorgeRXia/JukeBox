@@ -190,6 +190,8 @@ function JukeBox(songPick){
 
 	this.soundCloudRunner = soundCloudRunner;
 
+	var juke = this;
+
 	// this.soundCloudPlayed = soundCloudPlayed;
 	
 	// this.sCloudPlayer = sCloudPlayer;
@@ -314,9 +316,11 @@ function JukeBox(songPick){
 	}
 
 function operation(operator) {
+	this.soundCloudRunner();
 	if(operator === "rewind"){
 		this.previousSong();
 		juke.player.pause();
+
 		if(this.soundCloudSong === true){
 			
 			juke.player.play();
