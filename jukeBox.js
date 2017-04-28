@@ -60,20 +60,20 @@ window.addEventListener("load", function(){
 
 })
 
-document.addEventListener("keyup", function(){
-	if (event.keyCode = 27){
+// document.addEventListener("keyup", function(){
+// 	if (event.keyCode = 27){
 
-		firstJukeBox.pauseSong();
-	}
+// 		firstJukeBox.pauseSong();
+// 	}
 
-})
+// })
 
-var andrewWK = document.getElementsByClassName("andrewWK")[0];
+// var andrewWK = document.getElementsByClassName("andrewWK")[0];
 
-andrewWK.addEventListener("click", function(){
-	firstJukeBox.playSong();
+// andrewWK.addEventListener("click", function(){
+// 	firstJukeBox.playSong();
 
-})
+// })
 
 
 
@@ -187,6 +187,7 @@ function JukeBox(songPick){
 	
 	this.addSong = addSong;
 	this.operation = operation;
+	this.operation2 = operation2;
 
 	this.soundCloudRunner = soundCloudRunner;
 
@@ -313,9 +314,9 @@ function nextSong(){
 	}
 
 function operation(operator) {
-	
+	console.log(operator)
 	if(operator === "rewind"){
-		this.previousSong();
+		
 		juke.player.pause();
 
 		if(this.songsList[0].soundCloud === true){
@@ -332,8 +333,9 @@ function operation(operator) {
 	}
 	
 	if(operator === "play"){
+		console.log(operator);
 		if(this.songsList[0].soundCloud === true){
-			this.nextSong();
+			console.log(operator);
 			juke.player.play();
 
 		} else{
@@ -343,8 +345,9 @@ function operation(operator) {
 	}
 	
 	if(operator === "pause"){
-		if(this.songsList[0].soundCloud === true){
-			
+		console.log(operator);
+		if(juke.songsList[0].soundCloud === true){
+			console.log(operator);
 			juke.player.pause();
 		}else{
 			this.pauseSong();
@@ -352,7 +355,7 @@ function operation(operator) {
 	}
 	
 	if(operator === "next"){
-		this.nextSong();
+		
 		juke.player.pause();
 		if(this.songsList[0].soundCloud === true){	
 			
@@ -361,6 +364,31 @@ function operation(operator) {
 			
 			this.playSong();
 		}
+	}
+
+}
+
+
+function operation2(operator) {
+	
+	if(operator === "rewind"){
+		this.previousSong();
+		
+		this.soundCloudRunner(operator);	
+	}
+	
+	if(operator === "play"){
+		this.soundCloudRunner(operator);
+	}
+	
+	if(operator === "pause"){
+		this.soundCloudRunner(operator);
+	}
+	
+	if(operator === "next"){
+		this.nextSong();
+		this.soundCloudRunner(operator);
+		
 	}
 
 }
