@@ -52,13 +52,13 @@ var firstJukeBox = new JukeBox();
 firstJukeBox.addSong(kWest);
 // firstJukeBox.addSong(kWest2);
 
-// window.addEventListener("load", function(){
-// 	var songIndex = firstJukeBox.currentSongNum;
+window.addEventListener("load", function(){
+	var songIndex = firstJukeBox.currentSongNum;
 
-// 	firstJukeBox.songNameDisplay(songIndex);
-// 	firstJukeBox.artistNameDisplay(songIndex);
+	firstJukeBox.songNameDisplay(songIndex);
+	firstJukeBox.artistNameDisplay(songIndex);
 
-// })
+})
 
 document.addEventListener("keyup", function(){
 	if (event.keyCode = 27){
@@ -173,7 +173,7 @@ function JukeBox(songPick){
 	this.songsList = [];
 	// this.songsList.push(songPick);
 
-	// this.soundCloudSong = this.songsList[0].soundCloud;
+	// this.soundCloudSong;
 	// this.currentSong = this.songsList[0].song;
 	this.currentSongNum = 0;
 
@@ -318,7 +318,7 @@ function operation(operator) {
 		this.previousSong();
 		juke.player.pause();
 
-		if(this.soundCloudSong === true){
+		if(this.songsList[0].soundCloud === true){
 			
 			juke.player.play();
 		} else{
@@ -332,7 +332,7 @@ function operation(operator) {
 	}
 	
 	if(operator === "play"){
-		if(this.soundCloudSong === true){
+		if(this.songsList[0].soundCloud === true){
 			this.nextSong();
 			juke.player.play();
 
@@ -343,7 +343,7 @@ function operation(operator) {
 	}
 	
 	if(operator === "pause"){
-		if(this.soundCloudSong === true){
+		if(this.songsList[0].soundCloud === true){
 			
 			juke.player.pause();
 		}else{
@@ -354,7 +354,7 @@ function operation(operator) {
 	if(operator === "next"){
 		this.nextSong();
 		juke.player.pause();
-		if(this.soundCloudSong === true){	
+		if(this.songsList[0].soundCloud === true){	
 			
 			juke.player.play();
 		}else{
