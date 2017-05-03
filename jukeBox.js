@@ -161,7 +161,7 @@ function Songs (song, artist, songName, album, albumArt, profilePage, songPage, 
 }
 
 function SongsFromSoundCloud(){
-	this.soundCloud = true;
+	// this.soundCloud = true;
 	Songs.apply(this, arguments);
 
 
@@ -313,63 +313,63 @@ function nextSong(){
 
 	}
 
-function operation(operator) {
-	console.log(operator)
-	if(operator === "rewind"){
+// function operation(operator) {
+// 	console.log(operator)
+// 	if(operator === "rewind"){
 		
-		juke.player.pause();
+// 		juke.player.pause();
 
-		if(this.songsList[0].soundCloud === true){
+// 		if(this.songsList[0].soundCloud === true){
 			
-			juke.player.play();
-		} else{
+// 			juke.player.play();
+// 		} else{
 			
-			this.playSong();
+// 			this.playSong();
 
 
-		}
+// 		}
 	
 
-	}
+// 	}
 	
-	if(operator === "play"){
-		console.log(operator);
-		if(this.songsList[0].soundCloud === true){
-			console.log(operator);
-			juke.player.play();
-			console.log(juke.player.play());
+// 	if(operator === "play"){
+// 		console.log(operator);
+// 		if(this.songsList[0].soundCloud === true){
+// 			console.log(operator);
+// 			juke.player.play();
+// 			console.log(juke.player.play());
 
-		} else{
+// 		} else{
 
 		
-	 firstJukeBox.playSong();
-		}
-	}
+// 	 firstJukeBox.playSong();
+// 		}
+// 	}
 	
-	if(operator === "pause"){
-		console.log(operator);
-		if(this.songsList[0].soundCloud === true){
-			console.log(operator);
-			juke.player.pause();
-			console.log(juke.player);
-		}else{
-			this.pauseSong();
-		}
-	}
+// 	if(operator === "pause"){
+// 		console.log(operator);
+// 		if(this.songsList[0].soundCloud === true){
+// 			console.log(operator);
+// 			juke.player.pause();
+// 			console.log(juke.player);
+// 		}else{
+// 			this.pauseSong();
+// 		}
+// 	}
 	
-	if(operator === "next"){
+// 	if(operator === "next"){
 		
-		juke.player.pause();
-		if(this.songsList[0].soundCloud === true){	
+// 		juke.player.pause();
+// 		if(this.songsList[0].soundCloud === true){	
 			
-			juke.player.play();
-		}else{
+// 			juke.player.play();
+// 		}else{
 			
-			this.playSong();
-		}
-	}
+// 			this.playSong();
+// 		}
+// 	}
 
-}
+// }
 
 
 function operation2(operator) {
