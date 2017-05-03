@@ -50,7 +50,7 @@ var firstJukeBox = new JukeBox();
 // firstJukeBox.addSong(partyMonster);
 // firstJukeBox.addSong(dianeYoung);
 firstJukeBox.addSong(kWest);
-// firstJukeBox.addSong(kWest2);
+firstJukeBox.addSong(kWest2);
 
 window.addEventListener("load", function(){
 	var songIndex = firstJukeBox.currentSongNum;
@@ -68,7 +68,7 @@ window.addEventListener("load", function(){
 
 // })
 
-// var andrewWK = document.getElementsByClassName("andrewWK")[0];
+var andrewWK = document.getElementsByClassName("andrewWK")[0];
 
 // andrewWK.addEventListener("click", function(){
 // 	firstJukeBox.playSong();
@@ -86,7 +86,7 @@ for(var i = 0; i < buttons.length; i++){
 
 	var operator = event.target.id;
 
-	firstJukeBox.soundCloudRunner(operator);
+	firstJukeBox.operation2(operator);
 
 	});
 
@@ -186,7 +186,7 @@ function JukeBox(songPick){
 	this.albumArtDisplay = albumArtDisplay;
 	
 	this.addSong = addSong;
-	this.operation = operation;
+	// this.operation = operation;
 	this.operation2 = operation2;
 
 	this.soundCloudRunner = soundCloudRunner;
@@ -337,18 +337,21 @@ function operation(operator) {
 		if(this.songsList[0].soundCloud === true){
 			console.log(operator);
 			juke.player.play();
+			console.log(juke.player.play());
 
 		} else{
 
-			 firstJukeBox.playSong();
+		
+	 firstJukeBox.playSong();
 		}
 	}
 	
 	if(operator === "pause"){
 		console.log(operator);
-		if(juke.songsList[0].soundCloud === true){
+		if(this.songsList[0].soundCloud === true){
 			console.log(operator);
 			juke.player.pause();
+			console.log(juke.player);
 		}else{
 			this.pauseSong();
 		}
@@ -382,7 +385,8 @@ function operation2(operator) {
 	}
 	
 	if(operator === "pause"){
-		this.soundCloudRunner(operator);
+		juke.player.play();
+		juke.player.pause();
 	}
 	
 	if(operator === "next"){
@@ -404,7 +408,7 @@ function soundCloudRunner(operator){
 
 				// player.play();
 				juke.player = player;
-juke.operation(operator);
+				juke.player.play();
 				})
 
 };

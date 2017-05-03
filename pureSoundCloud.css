@@ -1,0 +1,30 @@
+body {
+	background-color: gold;
+
+}
+
+h1 {
+	text-align: center;
+
+}
+
+.player-container {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+
+}
+
+.display{
+
+font-size: 20px;
+
+
+}
+.buttons {
+	font-size: 150px;
+	text-align: center;
+	margin: 0 auto;
+	display: inline;
+	background-color: silver;
+}
